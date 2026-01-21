@@ -1,0 +1,18 @@
+{
+  "name": "devops-portfolio",
+  "version": "1.0.0",
+  "description": "DevOps Engineer Portfolio",
+  "main": "public/index.html",
+  "scripts": {
+    "dev": "serve public -p 3000",
+    "start": "serve public -p 3000",
+    "build": "echo 'No build step required'",
+    "deploy": "vercel --prod"
+  },
+  "keywords": ["devops", "portfolio", "vercel"],
+  "author": "DevOps Engineer",
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^14.0.0"
+  }
+}

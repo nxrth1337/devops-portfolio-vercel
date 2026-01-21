@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevOps & Infrastructure Engineer</title>
+    <meta name="description" content="Опыт развертывания инфраструктуры, автоматизация процессов и CI/CD pipelines">
+    
+    <!-- Vercel Analytics (опционально) -->
+    <script defer src="/_vercel/insights/script.js"></script>
+    
+    <!-- Предзагрузка критических ресурсов -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Локальные стили -->
+    <link rel="stylesheet" href="/assets/css/main.css">
+    
+    <!-- Иконки (локально) -->
+    <link rel="stylesheet" href="/assets/css/icons.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
+    
+    <!-- Open Graph для соцсетей -->
+    <meta property="og:title" content="DevOps & Infrastructure Engineer">
+    <meta property="og:description" content="Практический опыт развертывания облачной инфраструктуры">
+    <meta property="og:image" content="/assets/images/og-image.jpg">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+</head>
+<body>
+    <!-- Навигация -->
+    <nav class="nav" role="navigation">
+        <div class="container nav__container">
+            <a href="/" class="nav__logo" aria-label="На главную">
+                <svg class="nav__logo-icon" width="24" height="24" viewBox="0 0 24 24">
+                    <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="currentColor"/>
+                    <path d="M2 17L12 22L22 17" fill="none" stroke="currentColor" stroke-width="2"/>
+                    <path d="M2 12L12 17L22 12" fill="none" stroke="currentColor" stroke-width="2"/>
+                </svg>
+                <span class="nav__logo-text">InfraOps</span>
+            </a>
+            
+            <button class="nav__toggle" id="navToggle" aria-label="Меню" aria-expanded="false">
+                <span class="nav__toggle-icon"></span>
+            </button>
+            
+            <div class="nav__menu" id="navMenu">
+                <a href="/" class="nav__link" data-active="true">
+                    <span class="nav__link-icon">🏠</span>
+                    Главная
+                </a>
+                <a href="/projects.html" class="nav__link">
+                    <span class="nav__link-icon">🚀</span>
+                    Проекты
+                </a>
+                <a href="/guides.html" class="nav__link">
+                    <span class="nav__link-icon">📚</span>
+                    Гайды
+                </a>
+                <a href="/blog.html" class="nav__link">
+                    <span class="nav__link-icon">✍️</span>
+                    Блог
+                </a>
+                <a href="/about.html" class="nav__link">
+                    <span class="nav__link-icon">👤</span>
+                    Обо мне
+                </a>
+            </div>
+            
+            <div class="nav__actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Сменить тему">
+                    <span class="theme-toggle__icon">🌙</span>
+                </button>
+                <a href="/contact.html" class="btn btn--sm btn--primary">
+                    Связаться
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Герой секция -->
+    <header class="hero" role="banner">
+        <div class="container hero__container">
+            <div class="hero__content">
+                <div class="badge">DevOps Engineer</div>
+                
+                <h1 class="hero__title">
+                    Строим <span class="gradient-text">инфраструктуру</span>,
+                    которая работает
+                </h1>
+                
+                <p class="hero__description">
+                    Практический опыт развертывания высокодоступных систем,
+                    автоматизации процессов и построения CI/CD pipelines.
+                    От домашней лаборатории до продакшн-кластеров.
+                </p>
+                
+                <div class="hero__stats">
+                    <div class="stat">
+                        <div class="stat__value" data-count="50">0</div>
+                        <div class="stat__label">развернутых систем</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat__value" data-count="24">0</div>
+                        <div class="stat__label">часа мониторинга</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat__value" data-count="99.9">0</div>
+                        <div class="stat__label">% аптайм</div>
+                    </div>
+                </div>
+                
+                <div class="hero__actions">
+                    <a href="/projects.html" class="btn btn--lg btn--primary">
+                        Посмотреть проекты
+                    </a>
+                    <a href="#latest" class="btn btn--lg btn--outline">
+                        Читать блог
+                    </a>
+                </div>
+            </div>
+            
+            <div class="hero__terminal">
+                <div class="terminal">
+                    <div class="terminal__header">
+                        <div class="terminal__dots">
+                            <span class="terminal__dot terminal__dot--red"></span>
+                            <span class="terminal__dot terminal__dot--yellow"></span>
+                            <span class="terminal__dot terminal__dot--green"></span>
+                        </div>
+                        <div class="terminal__title">infra@production ~</div>
+                    </div>
+                    <div class="terminal__body">
+                        <div class="terminal__line">
+                            <span class="terminal__prompt">$</span>
+                            <span class="terminal__command">kubectl get pods -A</span>
+                        </div>
+                        <div class="terminal__output">
+                            <pre>NAMESPACE     NAME                      READY   STATUS    RESTARTS   AGE
+kube-system   coredns-xxx              1/1     Running   0          15d
+production    app-frontend-xxx         2/2     Running   0          2d
+production    app-backend-xxx          1/1     Running   0          2d
+monitoring    grafana-xxx              1/1     Running   0          7d</pre>
+                        </div>
+                        <div class="terminal__line">
+                            <span class="terminal__prompt">$</span>
+                            <span class="terminal__command typing">docker-compose -f stack.yml up -d</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Анимированные фоны для Vercel -->
+        <div class="hero__background">
+            <div class="hero__grid"></div>
+            <div class="hero__glow"></div>
+        </div>
+    </header>
+
+    <!-- Стек технологий -->
+    <section class="stack">
+        <div class="container">
+            <h2 class="section__title">Технологический стек</h2>
+            <p class="section__subtitle">Инструменты, которые использую ежедневно</p>
+            
+            <div class="stack__grid">
+                <div class="tech-card">
+                    <div class="tech-card__icon">☸️</div>
+                    <h3 class="tech-card__title">Kubernetes</h3>
+                    <p class="tech-card__desc">Оркестрация контейнеров, Helm, Operators</p>
+                </div>
+                
+                <div class="tech-card">
+                    <div class="tech-card__icon">🐳</div>
+                    <h3 class="tech-card__title">Docker</h3>
+                    <p class="tech-card__desc">Контейнеризация, Docker Compose, Registry</p>
+                </div>
+                
+                <div class="tech-card">
+                    <div class="tech-card__icon">☁️</div>
+                    <h3 class="tech-card__title">Cloud</h3>
+                    <p class="tech-card__desc">AWS/GCP, Terraform, Infrastructure as Code</p>
+                </div>
+                
+                <div class="tech-card">
+                    <div class="tech-card__icon">⚡</div>
+                    <h3 class="tech-card__title">CI/CD</h3>
+                    <p class="tech-card__desc">GitLab CI, GitHub Actions, ArgoCD</p>
+                </div>
+                
+                <div class="tech-card">
+                    <div class="tech-card__icon">📊</div>
+                    <h3 class="tech-card__title">Monitoring</h3>
+                    <p class="tech-card__desc">Prometheus, Grafana, ELK Stack</p>
+                </div>
+                
+                <div class="tech-card">
+                    <div class="tech-card__icon">🔐</div>
+                    <h3 class="tech-card__title">Security</h3>
+                    <p class="tech-card__desc">Vault, Cert-Manager, Security Scanning</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Последние проекты -->
+    <section class="projects" id="projects">
+        <div class="container">
+            <div class="section__header">
+                <h2 class="section__title">Реализованные проекты</h2>
+                <a href="/projects.html" class="section__link">
+                    Все проекты →
+                </a>
+            </div>
+            
+            <div class="projects__grid">
+                <article class="project-card">
+                    <div class="project-card__badge">Активный</div>
+                    <div class="project-card__image">
+                        <div class="project-card__tags">
+                            <span class="tag">Proxmox</span>
+                            <span class="tag">Kubernetes</span>
+                            <span class="tag">Monitoring</span>
+                        </div>
+                    </div>
+                    <div class="project-card__content">
+                        <h3 class="project-card__title">Домашняя лаборатория Proxmox</h3>
+                        <p class="project-card__description">
+                            Полноценный кластер с изоляцией сетей, автоматическим развертыванием
+                            и мониторингом. Включает 10+ виртуальных машин, CI/CD pipeline
+                            и систему бэкапов.
+                        </p>
+                        <div class="project-card__meta">
+                            <span>⌛ 3 месяца разработки</span>
+                            <span>⚡ Production Ready</span>
+                        </div>
+                        <a href="/projects/proxmox-lab.html" class="project-card__link">
+                            Подробнее о реализации
+                        </a>
+                    </div>
+                </article>
+                
+                <article class="project-card">
+                    <div class="project-card__badge">Завершен</div>
+                    <div class="project-card__image">
+                        <div class="project-card__tags">
+                            <span class="tag">HAProxy</span>
+                            <span class="tag">Keepalived</span>
+                            <span class="tag">PostgreSQL</span>
+                        </div>
+                    </div>
+                    <div class="project-card__content">
+                        <h3 class="project-card__title">High-Availability Web Cluster</h3>
+                        <p class="project-card__description">
+                            Отказоустойчивый веб-кластер с автоматическим переключением,
+                            репликацией баз данных и балансировкой нагрузки. Обеспечивает
+                            99.99% доступности.
+                        </p>
+                        <div class="project-card__meta">
+                            <span>⌛ 2 месяца разработки</span>
+                            <span>📈 10k RPM</span>
+                        </div>
+                        <a href="/projects/ha-cluster.html" class="project-card__link">
+                            Архитектура и конфиги
+                        </a>
+                    </div>
+                </article>
+                
+                <article class="project-card">
+                    <div class="project-card__badge">В разработке</div>
+                    <div class="project-card__image">
+                        <div class="project-card__tags">
+                            <span class="tag">GitLab</span>
+                            <span class="tag">Nexus</span>
+                            <span class="tag">Ansible</span>
+                        </div>
+                    </div>
+                    <div class="project-card__content">
+                        <h3 class="project-card__title">Enterprise DevOps Pipeline</h3>
+                        <p class="project-card__description">
+                            Полный цикл CI/CD с артефакт-репозиторием, сканированием безопасности,
+                            автоматическим тестированием и развертыванием в несколько окружений.
+                        </p>
+                        <div class="project-card__meta">
+                            <span>⌛ 1 месяц разработки</span>
+                            <span>🔄 Автоматизация</span>
+                        </div>
+                        <a href="/projects/devops-pipeline.html" class="project-card__link">
+                            Схема и настройки
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Последние статьи блога -->
+    <section class="blog-preview" id="latest">
+        <div class="container">
+            <div class="section__header">
+                <h2 class="section__title">Последние статьи</h2>
+                <a href="/blog.html" class="section__link">
+                    Все статьи →
+                </a>
+            </div>
+            
+            <div class="blog-preview__grid">
+                <article class="blog-card">
+                    <time class="blog-card__date" datetime="2024-01-15">15 янв 2024</time>
+                    <h3 class="blog-card__title">
+                        <a href="/blog/proxmox-cluster-setup.html">
+                            Развертывание Proxmox кластера дома
+                        </a>
+                    </h3>
+                    <p class="blog-card__excerpt">
+                        Пошаговое руководство по настройке Proxmox VE для домашней лаборатории,
+                        созданию виртуальных машин и организации сетей...
+                    </p>
+                    <div class="blog-card__footer">
+                        <span class="blog-card__readtime">8 мин чтения</span>
+                        <a href="/blog/proxmox-cluster-setup.html" class="blog-card__link">
+                            Читать →
+                        </a>
+                    </div>
+                </article>
+                
+                <article class="blog-card">
+                    <time class="blog-card__date" datetime="2024-01-10">10 янв 2024</time>
+                    <h3 class="blog-card__title">
+                        <a href="/blog/nexus-gitlab-docker.html">
+                            Nexus + GitLab на Docker Compose
+                        </a>
+                    </h3>
+                    <p class="blog-card__excerpt">
+                        Конфигурация Nexus Repository Manager и GitLab CE с помощью Docker Compose,
+                        настройка репликации и интеграции между сервисами...
+                    </p>
+                    <div class="blog-card__footer">
+                        <span class="blog-card__readtime">12 мин чтения</span>
+                        <a href="/blog/nexus-gitlab-docker.html" class="blog-card__link">
+                            Читать →
+                        </a>
+                    </div>
+                </article>
+                
+                <article class="blog-card">
+                    <time class="blog-card__date" datetime="2024-01-05">5 янв 2024</time>
+                    <h3 class="blog-card__title">
+                        <a href="/blog/ansible-infrastructure.html">
+                            Ansible для управления инфраструктурой
+                        </a>
+                    </h3>
+                    <p class="blog-card__excerpt">
+                        Роли и playbook'и для автоматической настройки HAProxy, Keepalived,
+                        PostgreSQL репликации и развертывания приложений...
+                    </p>
+                    <div class="blog-card__footer">
+                        <span class="blog-card__readtime">15 мин чтения</span>
+                        <a href="/blog/ansible-infrastructure.html" class="blog-card__link">
+                            Читать →
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Быстрые гайды -->
+    <section class="guides">
+        <div class="container">
+            <h2 class="section__title">Быстрые гайды</h2>
+            <p class="section__subtitle">Конфигурации и команды для ежедневного использования</p>
+            
+            <div class="guides__grid">
+                <div class="guide-card">
+                    <div class="guide-card__header">
+                        <h3 class="guide-card__title">Proxmox VM Creation</h3>
+                        <button class="guide-card__copy" aria-label="Копировать код">
+                            📋
+                        </button>
+                    </div>
+                    <pre class="guide-card__code"><code class="language-bash"># Создание виртуальной машины
+qm create 100 --name vm-nexus01 \
+  --memory 8192 --cores 4 \
+  --net0 virtio,bridge=vmbr0 \
+  --scsi0 local-lvm:60
+
+# Загрузка образа ALT Linux
+wget http://ftp.altlinux.org/pub/distributions/ALTLinux/p11/images/cloud/x86_64/alt-p11-cloud-x86_64.qcow2
+
+# Импорт диска
+qm importdisk 100 alt-p11-cloud-x86_64.qcow2 local-lvm</code></pre>
+                    <a href="/guides/proxmox-vm.html" class="guide-card__link">
+                        Полное руководство →
+                    </a>
+                </div>
+                
+                <div class="guide-card">
+                    <div class="guide-card__header">
+                        <h3 class="guide-card__title">Docker Compose для Nexus</h3>
+                        <button class="guide-card__copy" aria-label="Копировать код">
+                            📋
+                        </button>
+                    </div>
+                    <pre class="guide-card__code"><code class="language-yaml">version: '3.8'
+services:
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: nexus
+      POSTGRES_USER: nexus
+      POSTGRES_PASSWORD: password
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U nexus"]
+      interval: 10s
+  
+  nexus:
+    image: sonatype/nexus3:latest
+    ports:
+      - "8081:8081"
+      - "8083:8083"
+      - "8084:8084"
+    volumes:
+      - nexus-data:/nexus-data
+    depends_on:
+      postgres:
+        condition: service_healthy</code></pre>
+                    <a href="/guides/nexus-docker.html" class="guide-card__link">
+                        Все настройки →
+                    </a>
+                </div>
+                
+                <div class="guide-card">
+                    <div class="guide-card__header">
+                        <h3 class="guide-card__title">GitLab CI Pipeline</h3>
+                        <button class="guide-card__copy" aria-label="Копировать код">
+                            📋
+                        </button>
+                    </div>
+                    <pre class="guide-card__code"><code class="language-yaml">stages:
+  - build
+  - test
+  - deploy
+
+variables:
+  NEXUS_URL: https://nexus.example.com
+  DOCKER_REGISTRY: $NEXUS_URL:8083
+
+build:
+  stage: build
+  image: docker:latest
+  services:
+    - docker:dind
+  script:
+    - docker build -t $DOCKER_REGISTRY/app:$CI_COMMIT_SHA .
+    - docker push $DOCKER_REGISTRY/app:$CI_COMMIT_SHA
+
+deploy:
+  stage: deploy
+  script:
+    - kubectl set image deployment/app app=$DOCKER_REGISTRY/app:$CI_COMMIT_SHA
+  only:
+    - main</code></pre>
+                    <a href="/guides/gitlab-ci.html" class="guide-card__link">
+                        Примеры pipelines →
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA секция -->
+    <section class="cta">
+        <div class="container cta__container">
+            <div class="cta__content">
+                <h2 class="cta__title">Интересует детальная реализация?</h2>
+                <p class="cta__description">
+                    Все конфигурации, Ansible playbook'и и Docker Compose файлы
+                    доступны в открытом репозитории.
+                </p>
+                <div class="cta__actions">
+                    <a href="https://github.com/yourusername/infrastructure-as-code" 
+                       class="btn btn--lg btn--primary" target="_blank" rel="noopener">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                        GitHub репозиторий
+                    </a>
+                    <a href="/contact.html" class="btn btn--lg btn--outline">
+                        Обсудить проект
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer__content">
+                <div class="footer__brand">
+                    <a href="/" class="footer__logo">
+                        <svg class="footer__logo-icon" width="32" height="32" viewBox="0 0 24 24">
+                            <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="currentColor"/>
+                            <path d="M2 17L12 22L22 17" fill="none" stroke="currentColor" stroke-width="2"/>
+                            <path d="M2 12L12 17L22 12" fill="none" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                        <span class="footer__logo-text">InfraOps</span>
+                    </a>
+                    <p class="footer__tagline">
+                        Практический опыт DevOps инженера
+                    </p>
+                </div>
+                
+                <div class="footer__nav">
+                    <div class="footer__column">
+                        <h3 class="footer__column-title">Навигация</h3>
+                        <a href="/" class="footer__link">Главная</a>
+                        <a href="/projects.html" class="footer__link">Проекты</a>
+                        <a href="/blog.html" class="footer__link">Блог</a>
+                        <a href="/guides.html" class="footer__link">Гайды</a>
+                    </div>
+                    
+                    <div class="footer__column">
+                        <h3 class="footer__column-title">Технологии</h3>
+                        <a href="/guides.html#docker" class="footer__link">Docker</a>
+                        <a href="/guides.html#kubernetes" class="footer__link">Kubernetes</a>
+                        <a href="/guides.html#ansible" class="footer__link">Ansible</a>
+                        <a href="/guides.html#terraform" class="footer__link">Terraform</a>
+                    </div>
+                    
+                    <div class="footer__column">
+                        <h3 class="footer__column-title">Контакты</h3>
+                        <a href="mailto:hello@infraops.dev" class="footer__link">Email</a>
+                        <a href="https://github.com/yourusername" class="footer__link">GitHub</a>
+                        <a href="https://linkedin.com/in/yourprofile" class="footer__link">LinkedIn</a>
+                        <a href="https://t.me/yourusername" class="footer__link">Telegram</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer__bottom">
+                <p class="footer__copyright">
+                    &copy; 2024 InfraOps. Все материалы доступны под MIT License.
+                </p>
+                <div class="footer__hosting">
+                    <span class="footer__hosting-badge">
+                        ▲ Размещено на Vercel
+                    </span>
+                    <span class="footer__hosting-speed">
+                        ⚡ Edge Network
+                    </span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Скрипты -->
+    <script src="/assets/js/main.js" type="module"></script>
+    
+    <!-- Highlight.js для подсветки кода -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script>
+        // Инициализация highlight.js
+        document.addEventListener('DOMContentLoaded', () => {
+            hljs.highlightAll();
+            
+            // Копирование кода
+            document.querySelectorAll('.guide-card__copy').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const code = e.target.closest('.guide-card')
+                        .querySelector('code').textContent;
+                    
+                    navigator.clipboard.writeText(code).then(() => {
+                        const original = button.textContent;
+                        button.textContent = '✅ Скопировано';
+                        
+                        setTimeout(() => {
+                            button.textContent = original;
+                        }, 2000);
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
